@@ -18,7 +18,7 @@ public class BoardController {
         this.boardService = boardService;
     }
 
-    @PostMapping
+    @PostMapping(value = "/sendCoordinate")
     public Position[] sendCoordinate(@RequestBody Position position) {
         return boardService.sendCoordinates(boardService.takeCoordinates(position));
     }
