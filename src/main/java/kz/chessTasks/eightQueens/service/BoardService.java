@@ -7,15 +7,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class BoardService {
 
-    public char[][] takeCoordinates(Position position){
+    public String[] takeCoordinates(Position position){
         Board board = new Board();
-        char[][] s = new char[2][board.N];
 
         String pos = position.convertToMassiveCoordinate(position.coordinate);
         int x = pos.charAt(0) - '0';
         int y = pos.charAt(1) - '0';
 
-        board.insertQueen(x,y);
-        return s;
+        String[] coordinates = board.insertQueen(x,y);
+        return coordinates;
+    }
+
+    public Position[] sendCoordinates(String[] s){
+        Position pos = new Position();
+        Board board = new Board();
+        Position[] positions = new Position[board.N];
+        for (int i = 0; i < board.N; i++)
+            positions[i].coordinate = s[i];
+        return positions;
     }
 }

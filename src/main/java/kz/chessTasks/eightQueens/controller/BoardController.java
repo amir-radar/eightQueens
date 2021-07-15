@@ -20,8 +20,6 @@ public class BoardController {
 
     @PostMapping
     public Position[] sendCoordinate(@RequestBody Position position) {
-        boardService.takeCoordinates(position);
-
-        return null;
+        return boardService.sendCoordinates(boardService.takeCoordinates(position));
     }
 }

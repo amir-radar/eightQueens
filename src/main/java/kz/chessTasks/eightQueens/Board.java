@@ -22,9 +22,26 @@ public class Board {
 //
 //    }
 
-    public void insertQueen(int x, int y){
+    public String[] insertQueen(int x, int y){
         cells[x][y] = 'F';
         purchaseQueens(0);
+        return collectQueens();
+    }
+
+    //считать F из board
+    private String[] collectQueens(){
+        String[] array = new String[N];
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                if (cells[i][j] == 'F') {
+                    String s;
+                    s = String.valueOf(i) + String.valueOf(j);
+                    array[i] = s;
+                }
+            }
+        }
+
+        return array;
     }
 
     private boolean purchaseQueens(int z){
