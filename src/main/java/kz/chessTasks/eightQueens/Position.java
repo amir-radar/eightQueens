@@ -26,7 +26,7 @@ public class Position {
         return coordinate;
     }
 
-    protected String convertToChessCoordinate(String s){
+    public String convertToChessCoordinate(String s){
         if (s.charAt(0) == '0')
             coordinate = "A" + s.charAt(1);
         else if (s.charAt(0) == '1')

@@ -22,8 +22,9 @@ public class BoardService {
         Position pos = new Position();
         Board board = new Board();
         Position[] positions = new Position[board.N];
-        for (int i = 0; i < board.N; i++)
-            positions[i].coordinate = s[i];
+        for (int i = 0; i < board.N; i++) {
+            positions[i].coordinate = pos.convertToChessCoordinate(s[i]);
+        }
         return positions;
     }
 }
