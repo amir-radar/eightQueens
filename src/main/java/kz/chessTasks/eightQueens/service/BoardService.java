@@ -1,12 +1,11 @@
 package kz.chessTasks.eightQueens.service;
 
-import javafx.geometry.Pos;
 import kz.chessTasks.eightQueens.Coordinate;
 import kz.chessTasks.eightQueens.Position;
 import kz.chessTasks.eightQueens.repo.BoardRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @Service
 public class BoardService {
@@ -144,8 +143,9 @@ public class BoardService {
         //Тут выводить ошибку
     }
 
-    public List<Position> collectPositions(BoardRepository board){
-        List<Position> positions = null;
+    public ArrayList<Position> collectPositions(BoardRepository board){
+        ArrayList<Position> positions = new ArrayList<Position>();
+
         for (int i = 0; i < board.getN(); i++)
             for (int j = 0; j < board.getCells()[i].length; j++){
                 if (board.getCells()[i][j] == 'F') {
