@@ -1,9 +1,12 @@
 package kz.chessTasks.eightQueens.service;
 
+import javafx.geometry.Pos;
 import kz.chessTasks.eightQueens.Coordinate;
 import kz.chessTasks.eightQueens.Position;
 import kz.chessTasks.eightQueens.repo.BoardRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BoardService {
@@ -71,6 +74,13 @@ public class BoardService {
         return coordinate;
     }
 
+    public Position convertCoordinateToPosition(Coordinate cor){
+        Position position = new Position();
+        position.setHoriz(convertCoordinateYToChar(cor.getY()));
+        position.setVert(convertCoordinateXToChar(cor.getX()));
+        return position;
+    }
+
     public int convertPositionCharsToInt(char s){
         if (s == 'A' || s == '1')
             return 0;
@@ -90,5 +100,62 @@ public class BoardService {
             return 7;
         //else
         //Тут выводить ошибку
+    }
+
+    public char convertCoordinateXToChar(int i){
+        if (i == 0)
+            return '1';
+        else if (i == 1)
+            return '2';
+        else if (i == 2)
+            return '3';
+        else if (i == 3)
+            return '4';
+        else if (i == 4)
+            return '5';
+        else if (i == 5)
+            return '6';
+        else if (i == 6)
+            return '7';
+        else
+            return '8';
+        //else
+        //Тут выводить ошибку
+    }
+
+    public char convertCoordinateYToChar(int i){
+        if (i == 0)
+            return 'A';
+        else if (i == 1)
+            return 'B';
+        else if (i == 2)
+            return 'C';
+        else if (i == 3)
+            return 'D';
+        else if (i == 4)
+            return 'E';
+        else if (i == 5)
+            return 'F';
+        else if (i == 6)
+            return 'G';
+        else
+            return 'H';
+        //else
+        //Тут выводить ошибку
+    }
+
+    public List<Position> collectPositions(BoardRepository board){
+        List<Position> positions = null;
+        for (int i = 0; i < board.getN(); i++)
+            for (int j = 0; j < board.getCells()[i].length; j++){
+                if (board.getCells()[i][j] == 'F') {
+                    Coordinate cor = new Coordinate();
+                    cor.setX(i);
+                    cor.setY(j);
+
+                    positions.add(convertCoordinateToPosition(cor));
+                }
+            }
+        return positions;
     }
 }

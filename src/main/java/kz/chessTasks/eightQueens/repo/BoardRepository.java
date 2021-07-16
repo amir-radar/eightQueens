@@ -1,6 +1,10 @@
 package kz.chessTasks.eightQueens.repo;
 
+import kz.chessTasks.eightQueens.Coordinate;
+import kz.chessTasks.eightQueens.Position;
 import kz.chessTasks.eightQueens.service.BoardService;
+
+import java.util.List;
 
 public class BoardRepository {
 

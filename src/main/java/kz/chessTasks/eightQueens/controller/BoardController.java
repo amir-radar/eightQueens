@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/cells")
 public class BoardController {
@@ -20,7 +22,7 @@ public class BoardController {
     }
 
     @PostMapping(value = "/sendPosition")
-    public Position[] sendCoordinate(@RequestBody Position position) {
+    public List<Position> sendCoordinate(@RequestBody Position position) {
         //return boardService.takeCoordinates(position);
         BoardRepository board1 = new BoardRepository();
         Coordinate coordinate =  boardService.convertPositionToCoordinate(position);
@@ -28,6 +30,6 @@ public class BoardController {
         boardService.tryToSetQueens(board1, 0, coordinate);
         board1.printArray(board1.getCells());
 
-        return null;
+        return boardService.collectPositions(board1);
     }
 }

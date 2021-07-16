@@ -12,29 +12,11 @@ public class Position {
         return vert;
     }
 
-    public String coordinate;
+    public void setHoriz(char horiz) {
+        this.horiz = horiz;
+    }
 
-    public String convertToPosition(String s){
-        System.out.println(s);
-        if (s.charAt(0) == '0')
-            coordinate = "A" + s.charAt(1);
-        else if (s.charAt(0) == '1')
-            coordinate = "B" + s.charAt(1);
-        else if (s.charAt(0) == '2')
-            coordinate = "C" + s.charAt(1);
-        else if (s.charAt(0) == '3')
-            coordinate = "D" + s.charAt(1);
-        else if (s.charAt(0) == '4')
-            coordinate = "E" + s.charAt(1);
-        else if (s.charAt(0) == '5')
-            coordinate = "F" + s.charAt(1);
-        else if (s.charAt(0) == '6')
-            coordinate = "G" + s.charAt(1);
-        else if (s.charAt(0) == '7')
-            coordinate = "H" + s.charAt(1);
-        //else
-        //Тут выводить ошибку
-
-        return coordinate;
+    public void setVert(char vert) {
+        this.vert = vert;
     }
 }
