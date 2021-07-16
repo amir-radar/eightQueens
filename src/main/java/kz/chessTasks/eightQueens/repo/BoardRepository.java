@@ -74,4 +74,12 @@ public class BoardRepository {
             System.out.println();
         }
     }
+
+    public void fillArray(BoardRepository board){
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                cells[i][j] = '0';
+            }
+        }
+    }
 }

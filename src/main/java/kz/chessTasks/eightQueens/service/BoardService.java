@@ -1,43 +1,34 @@
 package kz.chessTasks.eightQueens.service;
 
+import kz.chessTasks.eightQueens.Coordinate;
+import kz.chessTasks.eightQueens.Position;
 import kz.chessTasks.eightQueens.repo.BoardRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BoardService {
 
-    BoardRepository boardRepository;
-
-
-    //    public String[] takeCoordinates(Position position){
-//        Board board = new Board();
-//
-//        String pos = position.convertToMassiveCoordinate(position.coordinate);
-//        int x = pos.charAt(0) - '0';
-//        int y = pos.charAt(1) - '0';
-//        System.out.println(x + " " + y);
-//
-//        String[] coordinates = board.insertQueen(x,y);
-//        return coordinates;
-//    }
-
-    public boolean tryToSetQueens(BoardRepository board, int z, int h, int g){
+    public boolean tryToSetQueens(BoardRepository board, int z, Coordinate coordinate){
         if (z==board.getN()) return true;
+        int h = coordinate.getX();
+        int g = coordinate.getY();
         for (int i = 0; i < board.getN(); i++) {
-                if (checkPossibleLocations(board, z, i, h, g)) {
-                    board.getCells()[z][i] = 'F';      //repo
-                    if (tryToSetQueens(board, z + 1, h, g)) {
-                        return true;
-                    }
-                    if(z != h && i != g) {
-                        board.getCells()[z][i] = '0';   //repo
-                    }
+            if (checkPossibleLocations(board, z, i, h, g)) {
+                board.getCells()[z][i] = 'F';      //repo
+                if (tryToSetQueens(board, z + 1, coordinate)){
+                    return true;
                 }
+                if(z != h && i != g) {
+                    board.getCells()[z][i] = '0';   //repo
+                }
+            }
         }
         return false;
     }
 
     private boolean checkPossibleLocations(BoardRepository board, int x, int y, int h, int g){
+
+        //На этом поле уже установлена F
         if (x==h && y==g){ return true;}
 
         for (int i = 0; i < board.getN(); i++) {
@@ -47,6 +38,7 @@ public class BoardService {
         //Разница между координатами
         int a;
         if (x>y) a=x-y; else a=y-x;
+        //
         if (x<y) {
             for (int i = 0; i < board.getN()-a; i++) {
                 if (board.getCells()[i][i+a] == 'F') return false;
@@ -72,12 +64,31 @@ public class BoardService {
         return true;
     }
 
-    private void printArray(char[][] array){
-        for (int i = 0; i < 8; i++){
-            for (int j = 0; j < 8; j++){
-                System.out.print(array[i][j]);
-            }
-            System.out.println();
-        }
+    public Coordinate convertPositionToCoordinate(Position pos){
+        Coordinate coordinate = new Coordinate();
+        coordinate.setX(convertPositionCharsToInt(pos.getVert()));
+        coordinate.setY(convertPositionCharsToInt(pos.getHoriz()));
+        return coordinate;
+    }
+
+    public int convertPositionCharsToInt(char s){
+        if (s == 'A' || s == '1')
+            return 0;
+        else if (s == 'B' || s == '2')
+            return 1;
+        else if (s == 'C' || s == '3')
+            return 2;
+        else if (s == 'D' || s == '4')
+            return 3;
+        else if (s == 'E' || s == '5')
+            return 4;
+        else if (s == 'F' || s == '6')
+            return 5;
+        else if (s == 'G' || s == '7')
+            return 6;
+        else //if (s == 'H' || s == '8')
+            return 7;
+        //else
+        //Тут выводить ошибку
     }
 }
