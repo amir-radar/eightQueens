@@ -26,11 +26,11 @@ public class BoardController {
     public ArrayList<Position> sendCoordinate(@RequestBody Position position) {
         BoardRepository board1 = new BoardRepository();
         Coordinate coordinate =  boardService.convertPositionToCoordinate(position);
-        board1.fillArray(board1);
+        //board1.fillArray(board1);
+        boardService.setFirstQueen(board1, coordinate);
         boardService.tryToSetQueens(board1, 0, coordinate);
-        board1.printArray(board1.getCells());
+        //board1.printArray(board1.getCells());
 
         return boardService.collectPositions(board1);
-        //return null;
     }
 }

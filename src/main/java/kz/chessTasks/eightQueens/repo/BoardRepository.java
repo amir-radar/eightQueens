@@ -8,15 +8,6 @@ public class BoardRepository {
 
     private final int N = 8;
     private char[][] cells = new char[N][N];
-    private List<Position> positions;
-
-    public List<Position> getPositions() {
-        return positions;
-    }
-
-    public void setPositions(List<Position> positions) {
-        this.positions = positions;
-    }
 
     public int getN() {
         return N;

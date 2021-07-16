@@ -10,6 +10,10 @@ import java.util.ArrayList;
 @Service
 public class BoardService {
 
+    public void setFirstQueen(BoardRepository board, Coordinate cor){
+        board.getCells()[cor.getX()][cor.getY()] = 'F';
+    }
+
     public boolean tryToSetQueens(BoardRepository board, int z, Coordinate coordinate){
         if (z==board.getN()) return true;
         int h = coordinate.getX();
@@ -28,10 +32,11 @@ public class BoardService {
         return false;
     }
 
-    private boolean checkPossibleLocations(BoardRepository board, int x, int y, int h, int g){
-
+    private boolean checkPossibleLocations(BoardRepository board, int x, int y, int h, int g) {
         //На этом поле уже установлена F
-        if (x==h && y==g){ return true;}
+        if (x == h && y == g) {
+            return true;
+        }
 
         for (int i = 0; i < board.getN(); i++) {
             if ((board.getCells()[x][i] == 'F' || board.getCells()[i][y] == 'F')) return false;
@@ -39,11 +44,12 @@ public class BoardService {
 
         //Разница между координатами
         int a;
-        if (x>y) a=x-y; else a=y-x;
+        if (x > y) a = x - y;
+        else a = y - x;
         //
-        if (x<y) {
-            for (int i = 0; i < board.getN()-a; i++) {
-                if (board.getCells()[i][i+a] == 'F') return false;
+        if (x < y) {
+            for (int i = 0; i < board.getN() - a; i++) {
+                if (board.getCells()[i][i + a] == 'F') return false;
             }
         } else {
             for (int i = a; i < board.getN(); i++) {
@@ -52,13 +58,13 @@ public class BoardService {
         }
 
         int b;
-        b=x+y;
-        if (x+y < board.getN()) {
-            for (int i = 0; i < b+1; i++) {
+        b = x + y;
+        if (x + y < board.getN()) {
+            for (int i = 0; i < b + 1; i++) {
                 if (board.getCells()[i][b - i] == 'F') return false;
             }
         } else {
-            for (int i = b - board.getN()+1; i < board.getN(); i++) {
+            for (int i = b - board.getN() + 1; i < board.getN(); i++) {
                 if (board.getCells()[i][b - i] == 'F') return false;
             }
         }
@@ -143,7 +149,7 @@ public class BoardService {
         //Тут выводить ошибку
     }
 
-    public ArrayList<Position> collectPositions(BoardRepository board){
+    public ArrayList<Position> collectPositions(BoardRepository board){ //repo
         ArrayList<Position> positions = new ArrayList<Position>();
 
         for (int i = 0; i < board.getN(); i++)
