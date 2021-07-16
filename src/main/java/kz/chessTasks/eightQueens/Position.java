@@ -1,6 +1,9 @@
 package kz.chessTasks.eightQueens;
 
 public class Position {
+    private char vert;
+    private char horiz;
+
     public String coordinate;
 
     public String convertToMassiveCoordinate(String s){
@@ -27,6 +30,7 @@ public class Position {
     }
 
     public String convertToChessCoordinate(String s){
+        System.out.println(s);
         if (s.charAt(0) == '0')
             coordinate = "A" + s.charAt(1);
         else if (s.charAt(0) == '1')

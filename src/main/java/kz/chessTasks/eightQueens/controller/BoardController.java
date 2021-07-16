@@ -1,6 +1,5 @@
 package kz.chessTasks.eightQueens.controller;
 
-import kz.chessTasks.eightQueens.Board;
 import kz.chessTasks.eightQueens.Position;
 import kz.chessTasks.eightQueens.service.BoardService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +19,7 @@ public class BoardController {
 
     @PostMapping(value = "/sendCoordinate")
     public Position[] sendCoordinate(@RequestBody Position position) {
-        return boardService.sendCoordinates(boardService.takeCoordinates(position));
+        //return boardService.takeCoordinates(position);
+        return null;
     }
 }
