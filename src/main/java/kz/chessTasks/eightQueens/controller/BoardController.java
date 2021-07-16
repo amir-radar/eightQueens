@@ -23,12 +23,11 @@ public class BoardController {
 
     @PostMapping(value = "/sendPosition")
     public List<Position> sendCoordinate(@RequestBody Position position) {
-        //return boardService.takeCoordinates(position);
         BoardRepository board1 = new BoardRepository();
         Coordinate coordinate =  boardService.convertPositionToCoordinate(position);
-        board1.fillArray(board1);
+        //board1.fillArray(board1);
         boardService.tryToSetQueens(board1, 0, coordinate);
-        board1.printArray(board1.getCells());
+        //board1.printArray(board1.getCells());
 
         return boardService.collectPositions(board1);
     }

@@ -152,8 +152,9 @@ public class BoardService {
                     Coordinate cor = new Coordinate();
                     cor.setX(i);
                     cor.setY(j);
-
-                    positions.add(convertCoordinateToPosition(cor));
+                    Position pos = new Position();
+                    pos = convertCoordinateToPosition(cor);
+                    positions.add(pos);
                 }
             }
         return positions;
